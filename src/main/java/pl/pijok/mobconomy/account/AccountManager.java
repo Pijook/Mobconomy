@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import pl.pijok.api.ConfigProvider;
 import pl.pijok.mobconomy.API;
 import pl.pijok.mobconomy.Mobconomy;
+import pl.pijok.mobconomy.account.transaction.TransactionData;
+import pl.pijok.mobconomy.account.transaction.TransactionResult;
 import pl.pijok.mobconomy.settings.Settings;
 
 import java.util.HashMap;
@@ -59,15 +61,12 @@ public class AccountManager {
         }
     }
 
-    public void withdrawCoins(CommandSender sender, Player player, double amount){
+    public void withdrawCoins(Player player, double amount, TransactionResult result){
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             if(isLoaded(player)){
                 Account account = accounts.get(player);
                 account.decreaseBalance(amount);
-
-                if(sender != null){
-                    //TODO Send message
-                }
+                callBackData(result, new TransactionData(player.getName(), account.getBalance(), true));
             }
             else{
                 //TODO Add offline support
@@ -75,19 +74,23 @@ public class AccountManager {
         });
     }
 
-    public void depositCoins(CommandSender sender, Player player, double amount){
+    public void depositCoins(Player player, double amount, TransactionResult result){
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
             if(isLoaded(player)){
                 Account account = accounts.get(player);
                 account.increaseBalance(amount);
 
-                if(sender != null){
-                    //TODO Send message
-                }
+                callBackData(result, new TransactionData(player.getName(), account.getBalance(), true));
             }
             else{
                 //TODO Add offline support
             }
+        });
+    }
+
+    private void callBackData(TransactionResult result, TransactionData data){
+        Bukkit.getScheduler().runTask(plugin, () -> {
+            result.onTransactionFinish(data);
         });
     }
 
