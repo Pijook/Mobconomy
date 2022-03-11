@@ -1,0 +1,8 @@
+name: Mobconomy
+author: Pijok
+version: 1.0.0
+api-version: 1.13
+authors:
+  - Pijok_
+  - Fade
+main: pl.pijok.mobconomy.Mobconomy

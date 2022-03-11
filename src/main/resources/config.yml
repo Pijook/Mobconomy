@@ -1,0 +1,9 @@
+databaseUsage: false
+databaseCredentials:
+  host: localhost
+  port: 3306
+  user: user
+  password: samplePassword
+
+startingBalance: 100.0
+maxBalance: 1000000000
