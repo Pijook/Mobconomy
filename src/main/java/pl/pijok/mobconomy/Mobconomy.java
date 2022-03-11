@@ -2,6 +2,8 @@ package pl.pijok.mobconomy;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.pijok.api.Debugger;
+import pl.pijok.mobconomy.settings.Lang;
+import pl.pijok.mobconomy.settings.Settings;
 
 public class Mobconomy extends JavaPlugin {
 
@@ -32,6 +34,13 @@ public class Mobconomy extends JavaPlugin {
 
     public boolean loadStuff(boolean reload){
         try{
+
+            if(!reload){
+
+            }
+
+            Lang.load();
+            Settings.load();
 
             return true;
         }
