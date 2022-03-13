@@ -4,12 +4,12 @@ public class TransactionData {
 
     private final String accountOwner;
     private final Double balance;
-    private final Boolean transactionSuccessful;
+    private final TransactionResult result;
 
-    public TransactionData(String accountOwner, Double balance, Boolean transactionSuccessful) {
+    public TransactionData(String accountOwner, Double balance, TransactionResult result) {
         this.accountOwner = accountOwner;
         this.balance = balance;
-        this.transactionSuccessful = transactionSuccessful;
+        this.result = result;
     }
 
     public String getAccountOwner() {
@@ -20,7 +20,7 @@ public class TransactionData {
         return balance;
     }
 
-    public Boolean isTransactionSuccessful() {
-        return transactionSuccessful;
+    public TransactionResult getResult() {
+        return result;
     }
 }

@@ -10,7 +10,7 @@ import pl.pijok.mobconomy.API;
 import pl.pijok.mobconomy.Controllers;
 import pl.pijok.mobconomy.account.AccountManager;
 import pl.pijok.mobconomy.account.transaction.TransactionData;
-import pl.pijok.mobconomy.account.transaction.TransactionResult;
+import pl.pijok.mobconomy.account.transaction.Transaction;
 
 public class MobconomyCommand implements CommandExecutor {
 
@@ -30,7 +30,7 @@ public class MobconomyCommand implements CommandExecutor {
                 Player target = Bukkit.getPlayer(args[1]);
                 double amount = Double.parseDouble(args[2]);
 
-                accountManager.depositCoins(target, amount, new TransactionResult() {
+                accountManager.depositCoins(target, amount, new Transaction() {
                     @Override
                     public void onTransactionFinish(TransactionData data) {
                         chatManager.sendMessage(sender, "&aNew account balance: &e" + data.getBalance());

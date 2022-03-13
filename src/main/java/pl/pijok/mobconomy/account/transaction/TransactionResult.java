@@ -1,7 +1,9 @@
 package pl.pijok.mobconomy.account.transaction;
 
-public interface TransactionResult {
+public enum TransactionResult {
 
-    void onTransactionFinish(TransactionData data);
+    SUCCESSFUL,
+    FAILED,
+    NOT_ENOUGH_MONEY
 
 }
